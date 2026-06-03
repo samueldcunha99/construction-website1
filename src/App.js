@@ -1,5 +1,6 @@
 import "./App.css";
 import CountUp from "react-countup";
+import emailjs from "@emailjs/browser";
 import {
   FaBuilding,
   FaHardHat,
@@ -57,15 +58,29 @@ function App() {
 
       const data = await response.json();
 
-      if (data.success) {
-        alert(data.message);
-        e.target.reset();
-      } else {
-        alert(data.error || "Something went wrong");
+      if (!data.success) {
+        alert(data.error || "Failed to save inquiry");
+        return;
       }
+
+      await emailjs.send(
+        "service_80luq2z",
+        "template_n70v38h",
+        {
+          name,
+          email,
+          phone,
+          message,
+        },
+        "I5sGRL9lxCLIC5f5z"
+      );
+
+      alert("Inquiry Submitted Successfully!");
+      e.target.reset();
+
     } catch (error) {
       console.error(error);
-      alert("Backend Connection Failed");
+      alert("Something went wrong. Please try again.");
     }
   };
 
