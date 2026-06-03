@@ -11,9 +11,6 @@ import {
 import WhatsAppButton from "./whatsapp";
 
 function App() {
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,7 +40,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/contact",
+        "https://constructionbackend-website1.onrender.com/contact",
         {
           method: "POST",
           headers: {
@@ -64,9 +61,8 @@ function App() {
         alert(data.message);
         e.target.reset();
       } else {
-        alert(data.error);
+        alert(data.error || "Something went wrong");
       }
-
     } catch (error) {
       console.error(error);
       alert("Backend Connection Failed");
@@ -75,8 +71,6 @@ function App() {
 
   return (
     <div>
-
-      {/* NAVBAR */}
       <nav className="navbar">
         <h2>NMS ENTERPRISES</h2>
 
@@ -88,7 +82,6 @@ function App() {
         </ul>
       </nav>
 
-      {/* HERO VIDEO */}
       <section className="hero heroVideo">
         <video
           className="heroVideo__video"
@@ -100,7 +93,6 @@ function App() {
           controls={false}
         >
           <source src="/constructiontest.mp4" type="video/mp4" />
-          Sorry, your browser does not support embedded videos.
         </video>
 
         <div className="overlay">
@@ -109,24 +101,18 @@ function App() {
         </div>
       </section>
 
-      {/* ABOUT */}
       <section id="about" className="section">
         <h2>About Us</h2>
-
         <p>
-          NMS ENTERPRISES specializes in residential,
-          commercial and industrial projects with over
-          20 years of experience.
+          NMS ENTERPRISES specializes in residential, commercial and industrial
+          projects with over 20 years of experience.
         </p>
       </section>
 
-      {/* SERVICES */}
       <section id="services" className="section">
-
         <h2>Our Services</h2>
 
         <div className="cards">
-
           <div className="card">
             <FaBuilding size={40} />
             <h3>Building Construction</h3>
@@ -141,14 +127,10 @@ function App() {
             <FaHardHat size={40} />
             <h3>Site Management</h3>
           </div>
-
         </div>
-
       </section>
 
-      {/* COUNTERS */}
       <section className="stats">
-
         <div>
           <h2><CountUp end={150} duration={4} />+</h2>
           <p>Projects</p>
@@ -163,62 +145,26 @@ function App() {
           <h2><CountUp end={20} duration={4} />+</h2>
           <p>Years Experience</p>
         </div>
-
       </section>
 
-      {/* PROJECT GALLERY */}
       <section id="projects" className="section">
-
         <h2>Project Gallery</h2>
 
         <div className="gallery">
-
-          <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab"
-            alt=""
-          />
-
-          <img
-            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2"
-            alt=""
-          />
-
-          <img
-            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e"
-            alt=""
-          />
-
-          <img
-            src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2"
-            alt=""
-          />
-
-          <img
-            src="https://images.unsplash.com/photo-1484154218962-a197022b5858"
-            alt=""
-          />
-
-          <img
-            src="https://images.unsplash.com/photo-1460317442991-0ec209397118"
-            alt=""
-          />
-
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab" alt="Construction Project" />
+          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2" alt="Office Project" />
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Construction Site" />
+          <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2" alt="Interior Project" />
+          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858" alt="Interior Work" />
+          <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118" alt="Building Project" />
         </div>
-
       </section>
 
-      {/* CONTACT */}
       <section id="contact" className="section">
-
         <h2>Contact Us</h2>
 
         <form onSubmit={handleSubmit} className="contact-form">
-
-          <input
-            name="name"
-            placeholder="Name"
-            required
-          />
+          <input name="name" placeholder="Name" required />
 
           <input
             name="email"
@@ -239,17 +185,13 @@ function App() {
             name="message"
             placeholder="Message"
             rows="5"
+            required
           />
 
-          <button type="submit">
-            Send Message
-          </button>
-
+          <button type="submit">Send Message</button>
         </form>
-
       </section>
 
-      {/* GOOGLE MAP */}
       <section>
         <iframe
           title="map"
@@ -263,29 +205,15 @@ function App() {
         ></iframe>
       </section>
 
-
-      {/* WHATSAPP QUICK ACTION */}
       <WhatsAppButton />
 
-      {/* FOOTER */}
       <footer className="footer">
-
         <h3>NMS ENTERPRISES</h3>
 
-        <p>
-          <FaPhone /> +91 9876543210
-        </p>
-
-        <p>
-          <FaEnvelope /> info@buildmaster.com
-        </p>
-
-        <p>
-          <FaMapMarkerAlt /> Mumbai, India
-        </p>
-
+        <p><FaPhone /> +91 9876543210</p>
+        <p><FaEnvelope /> info@buildmaster.com</p>
+        <p><FaMapMarkerAlt /> Mumbai, India</p>
       </footer>
-
     </div>
   );
 }
