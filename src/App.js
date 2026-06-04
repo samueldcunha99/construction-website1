@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import CountUp from "react-countup";
-import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import {
   FaBuilding,
@@ -69,16 +68,6 @@ function App() {
         return;
       }
 
-      emailjs
-        .send(
-          "service_80luq2z",
-          "template_n70v38h",
-          { name, email, phone, message },
-          "I5sGRL9lxCLIC5f5z"
-        )
-        .catch((error) => {
-          console.error("EmailJS failed:", error);
-        });
 
       showNotice("success", "Inquiry submitted successfully. We will contact you shortly.");
       e.target.reset();
