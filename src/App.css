@@ -83,7 +83,7 @@ body{
   height:100%;
   object-fit:cover;
   z-index:0;
-  filter:saturate(85%) contrast(105%);
+  filter:saturate(105%) contrast(108%) brightness(1.04);
 }
 
 .heroShade{
@@ -91,8 +91,8 @@ body{
   inset:0;
   z-index:1;
   background:
-    linear-gradient(to right,rgba(247,245,239,.96),rgba(247,245,239,.7),rgba(247,245,239,.15)),
-    linear-gradient(to top,rgba(247,245,239,.85),transparent);
+    linear-gradient(to right,rgba(247,245,239,.72),rgba(247,245,239,.42),rgba(247,245,239,.08)),
+    linear-gradient(to top,rgba(247,245,239,.48),transparent);
 }
 
 .overlay{
@@ -434,7 +434,7 @@ body{
 
 iframe{
   display:block;
-  filter:grayscale(100%) contrast(95%);
+  filter:none;
 }
 
 /* FOOTER */
