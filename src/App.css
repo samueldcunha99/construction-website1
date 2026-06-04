@@ -83,7 +83,7 @@ body{
   height:100%;
   object-fit:cover;
   z-index:0;
-  filter:saturate(105%) contrast(108%) brightness(1.04);
+  filter:saturate(115%) contrast(115%) brightness(1.08);
 }
 
 .heroShade{
@@ -91,8 +91,8 @@ body{
   inset:0;
   z-index:1;
   background:
-    linear-gradient(to right,rgba(247,245,239,.72),rgba(247,245,239,.42),rgba(247,245,239,.08)),
-    linear-gradient(to top,rgba(247,245,239,.48),transparent);
+    linear-gradient(to right,rgba(247,245,239,.5),rgba(247,245,239,.22),rgba(247,245,239,.03)),
+    linear-gradient(to top,rgba(247,245,239,.28),transparent);
 }
 
 .overlay{
