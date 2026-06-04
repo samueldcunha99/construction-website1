@@ -245,7 +245,7 @@ function App() {
         >
           <div className="signatureMedia">
             <img
-              src="https://img.staticmb.com/mbimages/project/Photo_h470_w1080/2023/02/01/Project-Photo-1-NMS-One-27-Navi-Mumbai-5392141_345_1366_470_1080.jpg.webp"
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=92"
               alt="NMS One 27 elevation"
             />
             <div className="signatureBadge">Featured Residential Tower</div>
@@ -291,7 +291,7 @@ function App() {
             target="_blank"
             rel="noreferrer"
           >
-            <img src="https://img.staticmb.com/mbimages/project/Photo_h470_w1080/2024/11/29/Project-Photo-11-NMS-One-27-Navi-Mumbai-5392141_408_580_470_1080.jpg.webp" alt="NMS One 27 tower view" />
+            <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=2400&q=92" alt="NMS One 27 tower view" />
             <div>
               <span>Kharghar / Residential</span>
               <h3>NMS One 27 Residences</h3>
@@ -305,7 +305,7 @@ function App() {
             target="_blank"
             rel="noreferrer"
           >
-            <img src="https://img.staticmb.com/mbimages/project/Photo_h470_w1080/Project-Photo-1-Shree-Ambica-Heritage-Navi-Mumbai-5104039_345_1366_470_1080.jpg.webp" alt="Shree Ambica Heritage" />
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=92" alt="Shree Ambica Heritage" />
             <div>
               <span>Kharghar / Ready To Move</span>
               <h3>Shree Ambica Heritage</h3>
@@ -319,7 +319,7 @@ function App() {
             target="_blank"
             rel="noreferrer"
           >
-            <img src="https://img.staticmb.com/mbimages/project/Photo_h470_w1080/2024/02/09/Site-Photos-6-NMS-Titanium-Navi-Mumbai-5213627_1088_816_470_1080.jpg.webp" alt="NMS Titanium commercial tower" />
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2200&q=92" alt="NMS Titanium commercial tower" />
             <div>
               <span>CBD Belapur / Commercial</span>
               <h3>NMS Titanium</h3>

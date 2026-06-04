@@ -305,6 +305,9 @@ body{
   width:100%;
   height:100%;
   object-fit:cover;
+  image-rendering:auto;
+  backface-visibility:hidden;
+  filter:saturate(108%) contrast(108%) brightness(1.02);
   transform:scale(1.02);
   transition:.9s ease;
 }
@@ -451,6 +454,9 @@ body{
   width:100%;
   height:100%;
   object-fit:cover;
+  image-rendering:auto;
+  backface-visibility:hidden;
+  filter:saturate(108%) contrast(108%) brightness(1.02);
   position:absolute;
   inset:0;
   transition:.7s ease;
