@@ -10,6 +10,7 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
   FaArrowRight,
+  FaExternalLinkAlt,
 } from "react-icons/fa";
 import WhatsAppButton from "./whatsapp";
 
@@ -109,7 +110,7 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Construction • Interiors • Site Management
+            Construction - Interiors - Site Management
           </motion.span>
 
           <motion.h1
@@ -235,33 +236,98 @@ function App() {
         <span className="sectionTag">Selected Work</span>
         <h2>Projects shaped by function, form and durability.</h2>
 
+        <motion.div
+          className="signatureProject"
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9 }}
+          viewport={{ once: true }}
+        >
+          <div className="signatureMedia">
+            <img
+              src="https://img.staticmb.com/mbimages/project/Photo_h470_w1080/2023/02/01/Project-Photo-1-NMS-One-27-Navi-Mumbai-5392141_345_1366_470_1080.jpg.webp"
+              alt="NMS One 27 elevation"
+            />
+            <div className="signatureBadge">Featured Residential Tower</div>
+          </div>
+
+          <div className="signatureContent">
+            <span className="sectionTag">NMS One 27 / Kharghar</span>
+            <h3>Vertical living shaped around privacy, amenities and city access.</h3>
+            <p>
+              A made-for-modern-family residential address in Sector 27, Kharghar,
+              imagined with efficient 2 and 3 BHK homes, an elevated amenity deck,
+              and a refined arrival experience.
+            </p>
+
+            <div className="projectFacts">
+              <div><strong>44</strong><span>Residences</span></div>
+              <div><strong>1</strong><span>Tower</span></div>
+              <div><strong>Dec 2027</strong><span>Possession</span></div>
+              <div><strong>2 & 3 BHK</strong><span>Homes</span></div>
+            </div>
+
+            <div className="projectNotes">
+              <span>RERA: P52000034056</span>
+              <span>Rs. 1.08 Cr - Rs. 1.56 Cr</span>
+              <span>Infinity pool, clubhouse, security, open spaces</span>
+            </div>
+
+            <a
+              href="https://www.magicbricks.com/nms-one-27-kharghar-navi-mumbai-pdpid-4d4235333932313431"
+              target="_blank"
+              rel="noreferrer"
+              className="projectLink"
+            >
+              Open Project <FaExternalLinkAlt />
+            </a>
+          </div>
+        </motion.div>
+
         <div className="projectGrid">
-          <div className="featureProject largeProject">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab" alt="Construction Project" />
+          <a
+            className="featureProject largeProject"
+            href="https://www.magicbricks.com/nms-one-27-kharghar-navi-mumbai-pdpid-4d4235333932313431"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="https://img.staticmb.com/mbimages/project/Photo_h470_w1080/2024/11/29/Project-Photo-11-NMS-One-27-Navi-Mumbai-5392141_408_580_470_1080.jpg.webp" alt="NMS One 27 tower view" />
             <div>
-              <span>Mumbai</span>
-              <h3>Luxury Residential Development</h3>
+              <span>Kharghar / Residential</span>
+              <h3>NMS One 27 Residences</h3>
+              <p>2 and 3 BHK homes, 44 residences, possession planned for Dec 2027.</p>
             </div>
-          </div>
+          </a>
 
-          <div className="featureProject">
-            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2" alt="Office Project" />
+          <a
+            className="featureProject"
+            href="https://www.magicbricks.com/shree-ambica-heritage-kharghar-navi-mumbai-pdpid-4d4235313034303339"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="https://img.staticmb.com/mbimages/project/Photo_h470_w1080/Project-Photo-1-Shree-Ambica-Heritage-Navi-Mumbai-5104039_345_1366_470_1080.jpg.webp" alt="Shree Ambica Heritage" />
             <div>
-              <span>Pune</span>
-              <h3>Corporate Office Buildout</h3>
+              <span>Kharghar / Ready To Move</span>
+              <h3>Shree Ambica Heritage</h3>
+              <p>Two-tower residential address with 2 BHK homes near Kharghar station.</p>
             </div>
-          </div>
+          </a>
 
-          <div className="featureProject">
-            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Construction Site" />
+          <a
+            className="featureProject"
+            href="https://www.magicbricks.com/nms-titanium-cbd-belapur-navi-mumbai-pdpid-4d4235323133363237"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="https://img.staticmb.com/mbimages/project/Photo_h470_w1080/2024/02/09/Site-Photos-6-NMS-Titanium-Navi-Mumbai-5213627_1088_816_470_1080.jpg.webp" alt="NMS Titanium commercial tower" />
             <div>
-              <span>Navi Mumbai</span>
-              <h3>Commercial Site Management</h3>
+              <span>CBD Belapur / Commercial</span>
+              <h3>NMS Titanium</h3>
+              <p>Ready-to-move commercial tower in the Belapur business district.</p>
             </div>
-          </div>
+          </a>
         </div>
       </motion.section>
-
       <motion.section
         className="section statement"
         variants={reveal}
@@ -287,7 +353,7 @@ function App() {
       >
         <div>
           <span className="sectionTag">Project Inquiry</span>
-          <h2>Let’s discuss your next build.</h2>
+          <h2>Let's discuss your next build.</h2>
           <p>
             Share your requirement and our team will contact you with the next
             steps for quotation and project planning.
@@ -334,7 +400,7 @@ function App() {
 
       <footer className="footer">
         <h3>NMS ENTERPRISES</h3>
-        <p>Construction • Interiors • Site Management</p>
+        <p>Construction - Interiors - Site Management</p>
         <p><FaMapMarkerAlt /> Mumbai, India</p>
       </footer>
     </div>
