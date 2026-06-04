@@ -1,13 +1,15 @@
 import "./App.css";
 import CountUp from "react-countup";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
 import {
   FaBuilding,
   FaHardHat,
   FaTools,
   FaPhone,
   FaEnvelope,
-  FaMapMarkerAlt
+  FaMapMarkerAlt,
+  FaArrowRight,
 } from "react-icons/fa";
 import WhatsAppButton from "./whatsapp";
 
@@ -25,16 +27,12 @@ function App() {
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       alert("Please enter a valid email address");
       return;
     }
 
-    const phoneRegex = /^\d{10}$/;
-
-    if (!phoneRegex.test(phone)) {
+    if (!/^\d{10}$/.test(phone)) {
       alert("Please enter a valid 10-digit mobile number");
       return;
     }
@@ -44,15 +42,8 @@ function App() {
         "https://constructionbackend-website1.onrender.com/contact",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            phone,
-            message,
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, phone, message }),
         }
       );
 
@@ -66,22 +57,21 @@ function App() {
       await emailjs.send(
         "service_80luq2z",
         "template_n70v38h",
-        {
-          name,
-          email,
-          phone,
-          message,
-        },
+        { name, email, phone, message },
         "I5sGRL9lxCLIC5f5z"
       );
 
       alert("Inquiry Submitted Successfully!");
       e.target.reset();
-
     } catch (error) {
       console.error(error);
       alert("Something went wrong. Please try again.");
     }
+  };
+
+  const reveal = {
+    hidden: { opacity: 0, y: 70 },
+    show: { opacity: 1, y: 0 },
   };
 
   return (
@@ -90,10 +80,10 @@ function App() {
         <h2>NMS ENTERPRISES</h2>
 
         <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
+          <li><a href="#about">Company</a></li>
+          <li><a href="#services">Capabilities</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Inquire</a></li>
         </ul>
       </nav>
 
@@ -110,50 +100,121 @@ function App() {
           <source src="/constructiontest.mp4" type="video/mp4" />
         </video>
 
+        <div className="heroShade"></div>
+
         <div className="overlay">
-          <h1>Building Excellence For more than 100 years</h1>
-          <p>Modern Construction Solutions Trusted by millions</p>
+          <motion.span
+            className="eyebrow"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Construction • Interiors • Site Management
+          </motion.span>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 90 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.15 }}
+          >
+            Engineering Spaces.
+            <br />
+            Building Legacies.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 45 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.45 }}
+          >
+            NMS Enterprises delivers modern construction solutions with precision,
+            accountability, and long-term value.
+          </motion.p>
+
+          <motion.div
+            className="heroActions"
+            initial={{ opacity: 0, y: 35 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.7 }}
+          >
+            <a href="#contact" className="primaryBtn">
+              Start a Project <FaArrowRight />
+            </a>
+            <a href="#projects" className="secondaryBtn">
+              View Work
+            </a>
+          </motion.div>
         </div>
       </section>
 
-      <section id="about" className="section">
-        <h2>About Us</h2>
-        <p>
-          NMS ENTERPRISES specializes in residential, commercial and industrial
-          projects with over 20 years of experience.
-        </p>
-      </section>
+      <motion.section
+        id="about"
+        className="section splitSection"
+        variants={reveal}
+        initial="hidden"
+        whileInView="show"
+        transition={{ duration: 0.9 }}
+        viewport={{ once: true }}
+      >
+        <div>
+          <span className="sectionTag">Company</span>
+          <h2>Built on discipline, delivered with precision.</h2>
+        </div>
 
-      <section id="services" className="section">
-        <h2>Our Services</h2>
+        <div>
+          <p>
+            NMS ENTERPRISES specializes in residential, commercial and industrial
+            construction. From planning to execution, we manage every stage with
+            a focus on quality, safety, timelines and client trust.
+          </p>
+        </div>
+      </motion.section>
 
-        <div className="cards">
-          <div className="card">
-            <FaBuilding size={40} />
+      <motion.section
+        id="services"
+        className="section"
+        variants={reveal}
+        initial="hidden"
+        whileInView="show"
+        transition={{ duration: 0.9 }}
+        viewport={{ once: true }}
+      >
+        <span className="sectionTag">Capabilities</span>
+        <h2>Integrated execution for modern projects.</h2>
+
+        <div className="serviceList">
+          <motion.div className="serviceRow" whileHover={{ x: 12 }}>
+            <span>01</span>
+            <FaBuilding />
             <h3>Building Construction</h3>
-          </div>
+            <p>Residential, commercial and industrial project execution.</p>
+          </motion.div>
 
-          <div className="card">
-            <FaTools size={40} />
+          <motion.div className="serviceRow" whileHover={{ x: 12 }}>
+            <span>02</span>
+            <FaTools />
             <h3>Interior Work</h3>
-          </div>
+            <p>Premium interiors, finishing, renovation and space upgrades.</p>
+          </motion.div>
 
-          <div className="card">
-            <FaHardHat size={40} />
+          <motion.div className="serviceRow" whileHover={{ x: 12 }}>
+            <span>03</span>
+            <FaHardHat />
             <h3>Site Management</h3>
-          </div>
+            <p>Planning, supervision, coordination and on-site quality control.</p>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       <section className="stats">
         <div>
           <h2><CountUp end={150} duration={4} />+</h2>
-          <p>Projects</p>
+          <p>Projects Delivered</p>
         </div>
 
         <div>
           <h2><CountUp end={50} duration={4} />+</h2>
-          <p>Engineers</p>
+          <p>Engineers & Specialists</p>
         </div>
 
         <div>
@@ -162,32 +223,86 @@ function App() {
         </div>
       </section>
 
-      <section id="projects" className="section">
-        <h2>Project Gallery</h2>
+      <motion.section
+        id="projects"
+        className="section"
+        variants={reveal}
+        initial="hidden"
+        whileInView="show"
+        transition={{ duration: 0.9 }}
+        viewport={{ once: true }}
+      >
+        <span className="sectionTag">Selected Work</span>
+        <h2>Projects shaped by function, form and durability.</h2>
 
-        <div className="gallery">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab" alt="Construction Project" />
-          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2" alt="Office Project" />
-          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Construction Site" />
-          <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2" alt="Interior Project" />
-          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858" alt="Interior Work" />
-          <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118" alt="Building Project" />
+        <div className="projectGrid">
+          <div className="featureProject largeProject">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab" alt="Construction Project" />
+            <div>
+              <span>Mumbai</span>
+              <h3>Luxury Residential Development</h3>
+            </div>
+          </div>
+
+          <div className="featureProject">
+            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2" alt="Office Project" />
+            <div>
+              <span>Pune</span>
+              <h3>Corporate Office Buildout</h3>
+            </div>
+          </div>
+
+          <div className="featureProject">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Construction Site" />
+            <div>
+              <span>Navi Mumbai</span>
+              <h3>Commercial Site Management</h3>
+            </div>
+          </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="contact" className="section">
-        <h2>Contact Us</h2>
+      <motion.section
+        className="section statement"
+        variants={reveal}
+        initial="hidden"
+        whileInView="show"
+        transition={{ duration: 0.9 }}
+        viewport={{ once: true }}
+      >
+        <h2>
+          We combine field expertise with structured project control to deliver
+          spaces that perform for decades.
+        </h2>
+      </motion.section>
+
+      <motion.section
+        id="contact"
+        className="section contactSection"
+        variants={reveal}
+        initial="hidden"
+        whileInView="show"
+        transition={{ duration: 0.9 }}
+        viewport={{ once: true }}
+      >
+        <div>
+          <span className="sectionTag">Project Inquiry</span>
+          <h2>Let’s discuss your next build.</h2>
+          <p>
+            Share your requirement and our team will contact you with the next
+            steps for quotation and project planning.
+          </p>
+
+          <div className="contactInfo">
+            <p><FaPhone /> +91 9876543210</p>
+            <p><FaEnvelope /> info@buildmaster.com</p>
+            <p><FaMapMarkerAlt /> Mumbai, India</p>
+          </div>
+        </div>
 
         <form onSubmit={handleSubmit} className="contact-form">
           <input name="name" placeholder="Name" required />
-
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            required
-          />
-
+          <input name="email" type="email" placeholder="Email" required />
           <input
             name="phone"
             placeholder="Phone (10 digits)"
@@ -195,17 +310,12 @@ function App() {
             maxLength="10"
             required
           />
-
-          <textarea
-            name="message"
-            placeholder="Message"
-            rows="5"
-            required
-          />
-
-          <button type="submit">Send Message</button>
+          <textarea name="message" placeholder="Project / Quotation Details" rows="5" required />
+          <button type="submit">
+            Send Inquiry <FaArrowRight />
+          </button>
         </form>
-      </section>
+      </motion.section>
 
       <section>
         <iframe
@@ -224,9 +334,7 @@ function App() {
 
       <footer className="footer">
         <h3>NMS ENTERPRISES</h3>
-
-        <p><FaPhone /> +91 9876543210</p>
-        <p><FaEnvelope /> info@buildmaster.com</p>
+        <p>Construction • Interiors • Site Management</p>
         <p><FaMapMarkerAlt /> Mumbai, India</p>
       </footer>
     </div>
