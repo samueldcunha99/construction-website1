@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import CountUp from "react-countup";
 import emailjs from "@emailjs/browser";
@@ -15,8 +16,12 @@ import {
 import WhatsAppButton from "./whatsapp";
 
 function App() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isSubmitting) return;
 
     const name = e.target.name.value.trim();
     const email = e.target.email.value.trim();
@@ -38,6 +43,8 @@ function App() {
       return;
     }
 
+    setIsSubmitting(true);
+
     try {
       const response = await fetch(
         "https://constructionbackend-website1.onrender.com/contact",
@@ -55,18 +62,24 @@ function App() {
         return;
       }
 
-      await emailjs.send(
-        "service_80luq2z",
-        "template_n70v38h",
-        { name, email, phone, message },
-        "I5sGRL9lxCLIC5f5z"
-      );
+      emailjs
+        .send(
+          "service_80luq2z",
+          "template_n70v38h",
+          { name, email, phone, message },
+          "I5sGRL9lxCLIC5f5z"
+        )
+        .catch((error) => {
+          console.error("EmailJS failed:", error);
+        });
 
-      alert("Inquiry Submitted Successfully!");
+      alert("Inquiry submitted successfully!");
       e.target.reset();
     } catch (error) {
       console.error(error);
       alert("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -377,8 +390,8 @@ function App() {
             required
           />
           <textarea name="message" placeholder="Project / Quotation Details" rows="5" required />
-          <button type="submit">
-            Send Inquiry <FaArrowRight />
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Send Inquiry"} <FaArrowRight />
           </button>
         </form>
       </motion.section>
