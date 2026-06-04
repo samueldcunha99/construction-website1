@@ -17,6 +17,13 @@ import WhatsAppButton from "./whatsapp";
 
 function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [notice, setNotice] = useState(null);
+
+  const showNotice = (type, message) => {
+    setNotice({ type, message });
+    window.clearTimeout(showNotice.timer);
+    showNotice.timer = window.setTimeout(() => setNotice(null), 4200);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,17 +36,17 @@ function App() {
     const message = e.target.message.value.trim();
 
     if (!name || !email || !phone || !message) {
-      alert("Please fill all required fields");
+      showNotice("error", "Please fill all required fields.");
       return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      alert("Please enter a valid email address");
+      showNotice("error", "Please enter a valid email address.");
       return;
     }
 
     if (!/^\d{10}$/.test(phone)) {
-      alert("Please enter a valid 10-digit mobile number");
+      showNotice("error", "Please enter a valid 10-digit mobile number.");
       return;
     }
 
@@ -58,7 +65,7 @@ function App() {
       const data = await response.json();
 
       if (!data.success) {
-        alert(data.error || "Failed to save inquiry");
+        showNotice("error", data.error || "Failed to save inquiry.");
         return;
       }
 
@@ -73,11 +80,11 @@ function App() {
           console.error("EmailJS failed:", error);
         });
 
-      alert("Inquiry submitted successfully!");
+      showNotice("success", "Inquiry submitted successfully. We will contact you shortly.");
       e.target.reset();
     } catch (error) {
       console.error(error);
-      alert("Something went wrong. Please try again.");
+      showNotice("error", "Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -90,7 +97,18 @@ function App() {
 
   return (
     <div>
-      <nav className="navbar">
+      {notice && (
+        <motion.div
+          className={`toast notice--${notice.type}`}
+          initial={{ opacity: 0, y: -18, x: "-50%" }}
+          animate={{ opacity: 1, y: 0, x: "-50%" }}
+          transition={{ duration: 0.25 }}
+          role="alert"
+        >
+          <span>{notice.type === "success" ? "Success" : "Action needed"}</span>
+          <p>{notice.message}</p>
+        </motion.div>
+      )}      <nav className="navbar">
         <h2>NMS ENTERPRISES</h2>
 
         <ul>
